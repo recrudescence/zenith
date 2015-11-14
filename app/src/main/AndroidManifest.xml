@@ -17,13 +17,18 @@
             android:name=".loginActivity"
             android:label="@string/title_activity_login" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".mainPage"
             android:label="@string/title_activity_main_page" >
+        </activity>
+        <activity
+            android:name=".goalsPage"
+            android:label="@string/title_activity_goals_page" >
         </activity>
     </application>
 
