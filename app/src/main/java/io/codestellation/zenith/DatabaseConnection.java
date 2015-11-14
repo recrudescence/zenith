@@ -1,4 +1,4 @@
-package io.codestellation.zenith.Missions;
+package io.codestellation.zenith;
 
 import android.app.Application;
 
@@ -6,7 +6,7 @@ import java.sql.*;
 /**
  * Created by Michael on 11/14/2015.
  */
-public class globalScope extends Application{
+public class DatabaseConnection extends Application{
 
     final String JDBC_DRIVER = "com.postgresql.jdbc.Driver";
     final String DB_TYPE = "postgresql";
