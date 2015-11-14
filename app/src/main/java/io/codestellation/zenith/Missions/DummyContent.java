@@ -1,4 +1,4 @@
-package io.codestellation.zenith.dummy;
+package io.codestellation.zenith.Missions;
 
 import java.util.ArrayList;
 import java.util.HashMap;

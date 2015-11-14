@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import io.codestellation.zenith.dummy.DummyContent;
+import io.codestellation.zenith.Missions.DummyContent;
 
 /**
  * A fragment representing a single Mission detail screen.

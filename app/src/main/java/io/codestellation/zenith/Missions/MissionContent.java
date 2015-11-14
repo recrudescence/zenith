@@ -1,4 +1,4 @@
-package io.codestellation.zenith;
+package io.codestellation.zenith.Missions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ public class MissionContent {
 
     public static String infoDatabase = "Placeholder";
 
-    public static List<String> MissionTitles = new ArrayList<>();
+    public static List<String> missionTitles = new ArrayList<>();
 
     public static List<MissionItem> missionBoard = new ArrayList<>();
 
@@ -46,13 +46,28 @@ public class MissionContent {
         missionBoard.add(Mission);
         missionBoardMap.put(Mission.id, Mission);
     }
+
     private static MissionItem createMissionItem(int position)
     {
-        return new MissionItem(String.valueOf(position), MissionTitles[position], makeDetails(position));
+        return new MissionItem(String.valueOf(position), missionTitles.get(position), makeDetails(position));
     }
     private static String makeDetails(int position)
     {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Details about Item: ").append(position);
+        for (int i = 0; i < position; i++)
+        {
+            builder.append("\nMore detailed information here");
+        }
+        return builder.toString();
+    }
 
+    private static void makeTitle()
+    {
+        for (int i = 0; i < COUNT; i++);
+        missionTitles.add("Make Way for Ducklings");
+        return;
     }
 
 }
+
