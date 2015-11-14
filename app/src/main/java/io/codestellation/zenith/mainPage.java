@@ -21,7 +21,7 @@ public class mainPage extends ActionBarActivity {
         resideMenu.attachToActivity(this);
 
         String titles[] = { "Home", "Profile", "Today's Goals", "Social", "History", "Settings" };
-        int icon[] = { R.drawable.iconHome, R.drawable.iconProfile, R.drawable.todaysGoals, R.drawable.social, R.drawable.history, R.drawable.settings };
+        int icon[] = { R.drawable.iconHome, R.drawable.iconProfile, R.drawable.iconGoals, R.drawable.iconSocial, R.drawable.iconHistory, R.drawable.iconGoals};
 
         int i;
         for (i = 0; i < titles.length; i++){
