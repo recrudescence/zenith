@@ -27,9 +27,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * A login screen that offers login via email/password.
@@ -67,9 +67,11 @@ public class loginActivity extends ActionBarActivity implements LoaderCallbacks<
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
+                    System.out.println("attempting login");
                     attemptLogin();
                     return true;
                 }
+                System.out.println("returned false");
                 return false;
             }
         });
@@ -78,7 +80,7 @@ public class loginActivity extends ActionBarActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptLogin();
+                attemptLogin();
                 changePage();
             }
         });
@@ -266,6 +268,11 @@ public class loginActivity extends ActionBarActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
+
+            System.out.println("about to send shit into the database");
+            DatabaseConnection connection = new DatabaseConnection();
+            ResultSet loginInfo = connection.sqlQuery("INSERT INTO categories VALUES (0, 'test name', 'test description')");
+            System.out.println("sent shit into database");
 
             try {
                 // Simulate network access.
