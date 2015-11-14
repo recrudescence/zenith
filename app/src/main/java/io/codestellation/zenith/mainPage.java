@@ -8,8 +8,7 @@ import android.view.View;
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 
-import static io.codestellation.zenith.R.drawable.iconhome;
-import static io.codestellation.zenith.R.drawable.tempmainpagebackground;
+import static io.codestellation.zenith.R.drawable.*;
 
 public class mainPage extends ActionBarActivity
 
@@ -27,12 +26,12 @@ public class mainPage extends ActionBarActivity
 
         //Create Menu Items
         String titles[] = { "Home", "Profile", "Today's Goals", "Social", "History", "Settings" };
-        int icon[] = {iconhome, R.drawable.iconprofile, R.drawable.icongoals, R.drawable.iconsocial, R.drawable.iconhistory, R.drawable.icongoals};
+        int icon[] = {icon_home, R.drawable.icon_profile, R.drawable.icon_goals, R.drawable.icon_social, R.drawable.icon_history, R.drawable.icon_goals};
 
         int i;
         for (i = 0; i < titles.length; i++){
             ResideMenuItem item = new ResideMenuItem(this, icon[i], titles[i]);
-            item.setOnClickListener(this);
+            //item.setOnClickListener(this);
             resideMenu.addMenuItem(item, ResideMenu.DIRECTION_LEFT); // or  ResideMenu.DIRECTION_RIGHT
         }
     }
