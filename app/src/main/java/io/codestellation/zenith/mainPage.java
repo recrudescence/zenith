@@ -6,6 +6,8 @@ import android.support.v7.app.ActionBarActivity;
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 
+import static io.codestellation.zenith.R.drawable.mainpagebackground;
+
 public class mainPage extends ActionBarActivity {
 
     @Override
@@ -15,7 +17,7 @@ public class mainPage extends ActionBarActivity {
 
         // Menu Drawer
         ResideMenu resideMenu = new ResideMenu(this);
-        resideMenu.setBackground(R.drawable.menuBackground);
+        resideMenu.setBackground(mainpagebackground);
         resideMenu.attachToActivity(this);
 
         String titles[] = { "Home", "Profile", "Today's Goals", "Social", "History", "Settings" };
