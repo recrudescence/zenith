@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Codestellation 2015 Zenith.iml" filepath="$PROJECT_DIR$/Codestellation 2015 Zenith.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zenith.iml" filepath="$PROJECT_DIR$/zenith.iml" />
     </modules>
   </component>
 </project>
