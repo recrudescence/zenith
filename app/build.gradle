@@ -24,4 +24,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:19.1.0'
     compile 'com.facebook.android:facebook-android-sdk:4.6.0'
+    compile 'com.specyci:residemenu:1.6+'
 }
