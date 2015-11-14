@@ -3,6 +3,7 @@ package io.codestellation.zenith;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -77,7 +78,8 @@ public class loginActivity extends ActionBarActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                //attemptLogin();
+                changePage();
             }
         });
 
@@ -95,6 +97,11 @@ public class loginActivity extends ActionBarActivity implements LoaderCallbacks<
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
+    private void changePage(){
+        Intent intent = new Intent(this, mainPage.class);
+        startActivity(intent);
+    }
+
     private void attemptLogin() {
         if (mAuthTask != null) {
             return;
