@@ -1,5 +1,6 @@
 package io.codestellation.zenith;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -8,9 +9,11 @@ import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 
 import static io.codestellation.zenith.R.drawable.iconhome;
-import static io.codestellation.zenith.R.drawable.mainpagebackground;
+import static io.codestellation.zenith.R.drawable.tempmainpagebackground;
 
-public class mainPage extends ActionBarActivity {
+public class mainPage extends ActionBarActivity
+
+{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +22,10 @@ public class mainPage extends ActionBarActivity {
 
         // Menu Drawer
         ResideMenu resideMenu = new ResideMenu(this);
-        resideMenu.setBackground(mainpagebackground);
+        resideMenu.setBackground(tempmainpagebackground);
         resideMenu.attachToActivity(this);
 
+        //Create Menu Items
         String titles[] = { "Home", "Profile", "Today's Goals", "Social", "History", "Settings" };
         int icon[] = {iconhome, R.drawable.iconprofile, R.drawable.icongoals, R.drawable.iconsocial, R.drawable.iconhistory, R.drawable.icongoals};
 
