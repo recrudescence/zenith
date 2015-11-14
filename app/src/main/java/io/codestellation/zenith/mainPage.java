@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 
+import static io.codestellation.zenith.R.drawable.iconhome;
 import static io.codestellation.zenith.R.drawable.mainpagebackground;
 
 public class mainPage extends ActionBarActivity {
@@ -21,7 +22,7 @@ public class mainPage extends ActionBarActivity {
         resideMenu.attachToActivity(this);
 
         String titles[] = { "Home", "Profile", "Today's Goals", "Social", "History", "Settings" };
-        int icon[] = { R.drawable.iconHome, R.drawable.iconProfile, R.drawable.iconGoals, R.drawable.iconSocial, R.drawable.iconHistory, R.drawable.iconGoals};
+        int icon[] = {iconhome, R.drawable.iconprofile, R.drawable.icongoals, R.drawable.iconsocial, R.drawable.iconhistory, R.drawable.icongoals};
 
         int i;
         for (i = 0; i < titles.length; i++){
