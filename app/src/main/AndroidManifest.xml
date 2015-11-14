@@ -30,6 +30,10 @@
             android:name=".goalsPage"
             android:label="@string/title_activity_goals_page" >
         </activity>
+        <activity
+            android:name=".settingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>
