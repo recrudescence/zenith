@@ -15,6 +15,8 @@ import org.w3c.dom.Text;
 
 import java.util.HashMap;
 
+import java.util.HashMap;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +34,7 @@ public class GoalsFragment extends Fragment {
     private static final String ARG_PARAM3 = "param3";  //Long Desc
 
     private View rootView;
+
 
 
     // TODO: Rename and change types of parameters
