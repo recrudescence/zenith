@@ -81,7 +81,10 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
+                android:layout_gravity="center"
+                android:paddingTop = "20dp"
                 android:id="@+id/Category" />
+
         </LinearLayout>
 
         <TextView

@@ -23,8 +23,8 @@ public class SessionVariables extends Application {
 //    public  SharedPreferences preferences;
 //     SharedPreferences.Editor editor = preferences.edit();
     //global variables to be used across application
-    private  ArrayList<Integer> todaysMissions;
-    private  ArrayList<String> goalHistory;
+    public  ArrayList<Integer> todaysMissions = new ArrayList<Integer>();
+    private  ArrayList<String> goalHistory = new ArrayList<String>();
     private  Calendar today;
     private  ArrayList<String> menuOptions;
     private  HashMap catExp;
@@ -40,7 +40,7 @@ public class SessionVariables extends Application {
 //        editor.putBoolean(logInState, false);
 //        editor.commit();
         today = Calendar.getInstance();
-        todaysMissions = getTodaysMissions();
+        //getTodaysMissions();
         goalHistory = new ArrayList<String>();
         menuOptions = new ArrayList<String>(Arrays.asList("Today's Goals", "social", "History", "Settings"));
         catExp  = new HashMap<String, Integer>();
@@ -76,16 +76,15 @@ public class SessionVariables extends Application {
         //create new missions everyday
         Calendar todaysDate = Calendar.getInstance();
         connection.sqlQuery(query.clearStaleMissions());
-        Thread.sleep(2000);
-        if (this.getDay().compareTo(todaysDate) < 0 || this.getDay() == null) {
+       // Thread.sleep(2000);
+        if (this.getDay().compareTo(todaysDate) < 0 || this.getDay() == null || todaysMissions==null) {
             today = todaysDate;
-            ArrayList<Integer> m_ids = new ArrayList<Integer>();
             connection.sqlQuery(query.getNumInProgress());
             connection.execute((Void) null);
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
             ResultSet numInProgress = connection.queryResult();
             int numIP = 0;
-            while(numInProgress.next()){
+            while(numInProgress != null && numInProgress.next()){
                 numIP = numInProgress.getInt(1);
             }
             for (int i = numIP; i < 3; i++) {
@@ -93,59 +92,58 @@ public class SessionVariables extends Application {
                 int randomNum = rand.nextInt(16);
                 //dont allow duplicate missions in a day
                 connection.sqlQuery(query.getAlreadyInProgress(randomNum));
-                Thread.sleep(2000);
+              //  Thread.sleep(2000);
                 ResultSet isInProgress = connection.queryResult();
                 int inProgress = 0;
-                while (isInProgress.next()) {
+                while (isInProgress != null && isInProgress.next()) {
                     inProgress = isInProgress.getInt(1);
                 }
                 //if mission already is a today's mission, get another one
                 if (inProgress == 1)
                     i--;
                 else {
-                    m_ids.add(randomNum);
+                    todaysMissions.add(randomNum);
                     connection.sqlQuery(query.addNewMission(randomNum));
-                    Thread.sleep(2000);
+                  //  Thread.sleep(2000);
                     ResultSet toAdd = connection.queryResult();
 
                 }
             }
-            return todaysMissions = m_ids;
+            return todaysMissions;
         }
         else
             return todaysMissions;
     }
     public HashMap<String, String> getMissionDetails(int i) throws SQLException, InterruptedException {
         HashMap<String, String> missionDetails = new HashMap<String, String>();
-        DatabaseConnection connection = new DatabaseConnection();
+        DatabaseConnection connection1 = new DatabaseConnection();
         //call query to get the information for mission with m_id = 1
-        connection.sqlQuery(query.missionDetailsQuery(i));
-        connection.execute((Void) null);
+        connection1.sqlQuery(query.missionDetailsQuery(i));
+        connection1.execute((Void) null);
         Thread.sleep(2000);
-        ResultSet rs = connection.queryResult();
+        ResultSet rs = connection1.queryResult();
         if (rs != null) {
             while (rs.next()) {
                 //parse result and store all the fields
                 String missionName = rs.getString(2).trim();
                 missionDetails.put("missionName", missionName);
-                System.out.println(missionName);
                 String shortDesc = rs.getString(3).trim();
                 missionDetails.put("shortDesc", shortDesc);
-                System.out.println(shortDesc);
                 String longDesc = rs.getString(4).trim();
                 missionDetails.put("longDesc", longDesc);
-                System.out.println(longDesc);
                 String exp = Integer.toString(rs.getInt(5));
                 missionDetails.put("exp", exp);
-                System.out.println(exp);
-                connection.sqlQuery(query.getCategoryName(i));
+                connection1 = new DatabaseConnection();
+                connection1.sqlQuery(query.getCategoryName(i));
+                connection1.execute((Void) null);
                 Thread.sleep(2000);
-                ResultSet rsJoin = connection.queryResult();
+                ResultSet rsJoin = connection1.queryResult();
                 //run query to join m_c_id with categories to get category name
+                String category = "N/A";
                 while (rsJoin.next()) {
-                    String category = rs.getString(1).trim();
-                    missionDetails.put("category", category);
+                    category = rsJoin.getString(2).trim();
                 }
+                missionDetails.put("category", category);
 
             }
         }
