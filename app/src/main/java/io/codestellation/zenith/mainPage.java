@@ -21,7 +21,7 @@ public class mainPage extends ActionBarActivity
 
         // Menu Drawer
         ResideMenu resideMenu = new ResideMenu(this);
-        resideMenu.setBackground(tempmainpagebackground);
+//        resideMenu.setBackground(tempmainpage);
         resideMenu.attachToActivity(this);
 
         //Create Menu Items
