@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.service.textservice.SpellCheckerService;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,6 +17,8 @@ import android.widget.RelativeLayout;
 
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
+
+import java.sql.SQLException;
 
 import static io.codestellation.zenith.R.drawable.*;
 
@@ -36,6 +39,12 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         mContext = this;
+        SessionVariables sv = (SessionVariables) getApplicationContext();
+        try {
+            sv.initialize();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         setupMenu();
 
         if (savedInstanceState == null)
@@ -144,6 +153,8 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
 
     private void changeFragment(Fragment targetFragment)
     {
+        SessionVariables sv = (SessionVariables) getApplicationContext();
+
         resideMenu.clearIgnoredViewList();
         getFragmentManager()
                 .beginTransaction()
