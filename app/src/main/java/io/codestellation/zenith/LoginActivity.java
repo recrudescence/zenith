@@ -276,11 +276,6 @@ public class LoginActivity extends ActionBarActivity implements LoaderCallbacks<
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            System.out.println("about to send shit into the database");
-            DatabaseConnection connection = new DatabaseConnection();
-            //ResultSet loginInfo = connection.sqlQuery("INSERT INTO categories VALUES (0, 'test name', 'test description')");
-            System.out.println("sent shit into database");
-
             try {
                 // Simulate network access.
                 Thread.sleep(2000);

@@ -20,8 +20,8 @@ import java.util.Random;
  * Created by Michael on 11/14/2015.
  */
 public class SessionVariables extends Application {
-    public  SharedPreferences preferences;
-     SharedPreferences.Editor editor = preferences.edit();
+//    public  SharedPreferences preferences;
+//     SharedPreferences.Editor editor = preferences.edit();
     //global variables to be used across application
     private  ArrayList<Integer> todaysMissions;
     private  ArrayList<String> goalHistory;
@@ -34,29 +34,32 @@ public class SessionVariables extends Application {
     DatabaseConnection connection = new DatabaseConnection();
 
 
-    public  void initialize() throws SQLException {
-        preferences = getSharedPreferences(this.getApplicationContext());
-        editor.putString(logInEmail, null);
-        editor.putBoolean(logInState, false);
-        editor.commit();
+    public  void initialize() throws SQLException, InterruptedException {
+//        preferences = getSharedPreferences(this.getApplicationContext());
+//        editor.putString(logInEmail, null);
+//        editor.putBoolean(logInState, false);
+//        editor.commit();
         today = Calendar.getInstance();
         todaysMissions = getTodaysMissions();
         goalHistory = new ArrayList<String>();
         menuOptions = new ArrayList<String>(Arrays.asList("Today's Goals", "social", "History", "Settings"));
         catExp  = new HashMap<String, Integer>();
+
+        //temp:
+        getMissionDetails(1);
     }
 
     public  SharedPreferences getSharedPreferences(Context applicationContext){
         return applicationContext.getSharedPreferences("zenith",0);
     }
     public  void setLoggedInUserEmail(String email){
-        editor.putString(logInEmail, email);
-        editor.commit();
+//        editor.putString(logInEmail, email);
+//        editor.commit();
     }
     public  void setLoggedInState(Boolean loggedIn) {
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean(logInState, loggedIn);
-        editor.commit();
+//        SharedPreferences.Editor editor = preferences.edit();
+//        editor.putBoolean(logInState, loggedIn);
+//        editor.commit();
     }
 
     public  ArrayList<String> getHistory(){
@@ -69,14 +72,17 @@ public class SessionVariables extends Application {
         return catExp;
     }
 
-    public ArrayList<Integer> getTodaysMissions() throws SQLException {
+    public ArrayList<Integer> getTodaysMissions() throws SQLException, InterruptedException {
         //create new missions everyday
         Calendar todaysDate = Calendar.getInstance();
         connection.sqlQuery(query.clearStaleMissions());
         if (this.getDay().compareTo(todaysDate) < 0 || this.getDay() == null) {
             today = todaysDate;
             ArrayList<Integer> m_ids = new ArrayList<Integer>();
-            ResultSet numInProgress = connection.sqlQuery(query.getNumInProgress());
+            connection.sqlQuery(query.getNumInProgress());
+            connection.execute((Void) null);
+            Thread.sleep(2000);
+            ResultSet numInProgress = connection.queryResult();
             int numIP = 0;
             while(numInProgress.next()){
                 numIP = numInProgress.getInt(1);
@@ -85,7 +91,9 @@ public class SessionVariables extends Application {
                 Random rand = new Random();
                 int randomNum = rand.nextInt(16);
                 //dont allow duplicate missions in a day
-                ResultSet isInProgress = connection.sqlQuery(query.getAlreadyInProgress(randomNum));
+                connection.sqlQuery(query.getAlreadyInProgress(randomNum));
+                Thread.sleep(2000);
+                ResultSet isInProgress = connection.queryResult();
                 int inProgress = 0;
                 while (isInProgress.next()) {
                     inProgress = isInProgress.getInt(1);
@@ -95,7 +103,10 @@ public class SessionVariables extends Application {
                     i--;
                 else {
                     m_ids.add(randomNum);
-                    ResultSet toAdd = connection.sqlQuery(query.addNewMission(randomNum));
+                    connection.sqlQuery(query.addNewMission(randomNum));
+                    Thread.sleep(2000);
+                    ResultSet toAdd = connection.queryResult();
+
                 }
             }
             return todaysMissions = m_ids;
@@ -103,30 +114,40 @@ public class SessionVariables extends Application {
         else
             return todaysMissions;
     }
-    public HashMap<String, String> getMissionDetails(int i) throws SQLException {
+    public HashMap<String, String> getMissionDetails(int i) throws SQLException, InterruptedException {
         HashMap<String, String> missionDetails = new HashMap<String, String>();
         DatabaseConnection connection = new DatabaseConnection();
         //call query to get the information for mission with m_id = 1
-        ResultSet rs = connection.sqlQuery(query.missionDetailsQuery(i));
-        while(rs.next()){
-            //parse result and store all the fields
-            String missionName = rs.getString(2).trim();
-            missionDetails.put("missionName", missionName);
-            String shortDesc = rs.getString(3).trim();
-            missionDetails.put("shortDesc", shortDesc);
-            String longDesc = rs.getString(4).trim();
-            missionDetails.put("longDesc", longDesc);
-            String exp = Integer.toString(rs.getInt(5));
-            missionDetails.put("exp", exp);
-            ResultSet rsJoin = connection.sqlQuery(query.getCategoryName(i));
-            //run query to join m_c_id with categories to get category name
-            while(rsJoin.next()) {
-                String category = rs.getString(1).trim();
-                missionDetails.put("category", category);
+        connection.sqlQuery(query.missionDetailsQuery(i));
+        connection.execute((Void) null);
+        Thread.sleep(2000);
+        ResultSet rs = connection.queryResult();
+        if (rs != null) {
+            while (rs.next()) {
+                //parse result and store all the fields
+                String missionName = rs.getString(2).trim();
+                missionDetails.put("missionName", missionName);
+                System.out.println(missionName);
+                String shortDesc = rs.getString(3).trim();
+                missionDetails.put("shortDesc", shortDesc);
+                System.out.println(shortDesc);
+                String longDesc = rs.getString(4).trim();
+                missionDetails.put("longDesc", longDesc);
+                System.out.println(longDesc);
+                String exp = Integer.toString(rs.getInt(5));
+                missionDetails.put("exp", exp);
+                System.out.println(exp);
+                connection.sqlQuery(query.getCategoryName(i));
+                Thread.sleep(2000);
+                ResultSet rsJoin = connection.queryResult();
+                //run query to join m_c_id with categories to get category name
+                while (rsJoin.next()) {
+                    String category = rs.getString(1).trim();
+                    missionDetails.put("category", category);
+                }
+
             }
-
         }
-
         return missionDetails;
     }
 

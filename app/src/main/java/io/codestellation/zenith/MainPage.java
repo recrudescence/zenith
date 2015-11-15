@@ -22,7 +22,7 @@ import java.sql.SQLException;
 
 import static io.codestellation.zenith.R.drawable.*;
 
-public class MainPage extends ActionBarActivity implements View.OnClickListener, MainFragment.OnFragmentInteractionListener,ProfileFragment.OnFragmentInteractionListener,GoalsFragment.OnFragmentInteractionListener,SocialFragment.OnFragmentInteractionListener,HistoryFragment.OnFragmentInteractionListener, SettingsFragment.OnFragmentInteractionListener
+public class MainPage extends ActionBarActivity implements View.OnClickListener, MainFragment.OnFragmentInteractionListener,ProfileFragment.OnFragmentInteractionListener,GoalsFragment.OnFragmentInteractionListener,SocialFragment.OnFragmentInteractionListener,HistoryFragment.OnFragmentInteractionListener, SettingsFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener
 
 {
     private ResideMenu resideMenu;
@@ -43,6 +43,8 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
         try {
             sv.initialize();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         setupMenu();
