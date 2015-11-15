@@ -191,6 +191,10 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
                 .commit();
     }
 
+    @Override
+    public void onBackPressed() {
+    }
+
     public ResideMenu getResideMenu(){
         return resideMenu;
     }
