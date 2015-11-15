@@ -64,8 +64,10 @@
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="190dp"
-            android:layout_gravity="center_horizontal|top">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -77,7 +79,8 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Large Text"
                     android:id="@+id/Mission1"
-                    android:layout_column="1" />
+                    android:layout_column="1"
+                    android:clickable="true" />
             </TableRow>
 
             <TableRow
@@ -100,7 +103,8 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/Mission2"
                     android:layout_column="1"
-                    android:text="words" />
+                    android:text="words"
+                    android:clickable="true" />
             </TableRow>
 
             <TableRow
@@ -123,7 +127,8 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Large Text"
                     android:id="@+id/Mission3"
-                    android:layout_column="1" />
+                    android:layout_column="1"
+                    android:clickable="true" />
             </TableRow>
 
         </TableLayout>
