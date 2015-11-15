@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -22,10 +23,14 @@ public class MainFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM3 = "param3";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String mParam3;
+
+    private View rootView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -38,11 +43,12 @@ public class MainFragment extends Fragment {
      * @return A new instance of fragment MainFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MainFragment newInstance(String param1, String param2) {
+    public static MainFragment newInstance(String param1, String param2, String param3) {
         MainFragment fragment = new MainFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM3, param3);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,6 +63,7 @@ public class MainFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam3 = getArguments().getString(ARG_PARAM3);
         }
     }
 
@@ -64,7 +71,25 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
+        fillMissions();
+
+        return rootView;
+    }
+
+    public void fillMissions()
+    {
+        TextView MissionOne = (TextView) rootView.findViewById(R.id.Mission1);
+        TextView MissionTwo = (TextView) rootView.findViewById(R.id.Mission2);
+        TextView MissionThree = (TextView) rootView.findViewById(R.id.Mission3);
+
+        MissionOne.setText(mParam1);
+        MissionTwo.setText(mParam2);
+        MissionThree.setText(mParam3);
+
+        return;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

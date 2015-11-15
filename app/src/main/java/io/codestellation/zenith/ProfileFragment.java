@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -17,6 +18,8 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.RadarData;
 import com.github.mikephil.charting.data.RadarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -88,6 +91,11 @@ public class ProfileFragment extends Fragment {
 
         fillChart();
 
+        TextView name = (TextView) rootView.findViewById(R.id.AvatarName);
+        TextView level = (TextView) rootView.findViewById(R.id.Level);
+
+        name.setText("Sir William");
+        level.setText("Level "+ String.valueOf(5));
         return rootView;
     }
 
@@ -114,7 +122,8 @@ public class ProfileFragment extends Fragment {
         yAxis.setTextSize(9f);
         yAxis.setStartAtZero(true);
 
-//        Legend l = mChart.getLegend();
+        Legend l = mChart.getLegend();
+        l.setEnabled(false);
 //        l.setPosition(LegendPosition.RIGHT_OF_CHART);
 ////        l.setTypeface(tf);
 //        l.setXEntrySpace(7f);
@@ -123,7 +132,7 @@ public class ProfileFragment extends Fragment {
 
     public void setData() {
 
-        float mult = 150;
+        float mult = 7;
         int cnt = 5;
 
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
