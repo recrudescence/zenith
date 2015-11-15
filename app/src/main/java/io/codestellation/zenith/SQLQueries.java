@@ -40,7 +40,16 @@ public class SQLQueries {
     public String missionDetailsQuery(int i ){
         return "SELECT * FROM all_missions WHERE m_id = " + i + ";";
     }
+
     public String getCategoryName(int i){
-        return "SELECT  c_name FROM categories JOIN all_missions ON categories.c_id = all_missions.m_c_id WHERE c_id = " + i  +";" ;
+        return "SELECT c_name FROM categories JOIN all_missions ON categories.c_id = all_missions.m_c_id WHERE c_id = " + i  +";" ;
+    }
+
+    public String clearStaleMissions(int u_id) {
+        return "DELETE FROM user_missions WHERE um_u_id = " + u_id + " AND um_status = 'Not Started';";
+    }
+
+    public String addNewMission(int u_id, int m_id) {
+        return "INSERT INTO user_missions VALUES (" + u_id + ", " + m_id + ", 'Not Started');";
     }
 }
