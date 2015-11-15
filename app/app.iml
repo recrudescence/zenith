@@ -98,6 +98,6 @@
     <orderEntry type="library" exported="" name="support-annotations-22.2.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-19.1.0" level="project" />
     <orderEntry type="library" exported="" name="bolts-android-1.2.0" level="project" />
-    <orderEntry type="library" exported="" name="jdbc4" level="project" />
+    <orderEntry type="library" exported="" name="jbdc3" level="project" />
   </component>
 </module>
