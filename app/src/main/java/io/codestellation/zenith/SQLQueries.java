@@ -33,4 +33,10 @@ public class SQLQueries {
     public String getAlreadyInProgress(int x){
         return "SELECT CASE WHEN EXISTS (SELECT * FROM user_missions WHERE m_id = " + x + ") THEN 1 ELSE 0 END";
     }
+    public String getNumInProgress(){
+        return "SELECT COUNT(*) FROM user_missions WHERE status = 'In Progress'";
+    }
+    public String getAlreadyInProgress(int x){
+        return "SELECT CASE WHEN EXISTS (SELECT * FROM user_missions WHERE m_id = " + x + ") THEN 1 ELSE 0 END";
+    }
 }
