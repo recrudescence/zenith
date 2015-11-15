@@ -6,7 +6,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="io.codestellation.zenith.mainPage"
-    android:background="#F0FFF0">
+    android:background="FFFFFF">
 
     <TextView
         android:layout_width="wrap_content"
@@ -17,7 +17,7 @@
         android: textColor="#000000"
         android:id="@+id/homepagefont"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true" / >
 
     <EditText
         android:layout_width="wrap_content"

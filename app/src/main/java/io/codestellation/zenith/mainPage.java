@@ -20,9 +20,8 @@ public class mainPage extends ActionBarActivity
         setContentView(R.layout.activity_main_page);
 
         // Menu Drawer
-        ResideMenu resideMenu = new ResideMenu(this);
-//        resideMenu.setBackground(tempmainpage);
-        resideMenu.attachToActivity(this);
+       ResideMenu resideMenu = new ResideMenu(this);
+       resideMenu.setBackground(tempmainpage);resideMenu.attachToActivity(this);
 
         //Create Menu Items
         String titles[] = { "Home", "Profile", "Today's Goals", "Social", "History", "Settings" };
