@@ -88,6 +88,10 @@ public class MainFragment extends Fragment {
         MissionTwo.setText(mParam2);
         MissionThree.setText(mParam3);
 
+        MissionOne.setText("No Tricks, All Treats!");
+        MissionTwo.setText("Save the Princess!");
+        MissionThree.setText("Something else adventurous!");
+
         return;
 
     }
