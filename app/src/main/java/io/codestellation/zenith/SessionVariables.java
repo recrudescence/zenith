@@ -76,6 +76,7 @@ public class SessionVariables extends Application {
         //create new missions everyday
         Calendar todaysDate = Calendar.getInstance();
         connection.sqlQuery(query.clearStaleMissions());
+        Thread.sleep(2000);
         if (this.getDay().compareTo(todaysDate) < 0 || this.getDay() == null) {
             today = todaysDate;
             ArrayList<Integer> m_ids = new ArrayList<Integer>();
