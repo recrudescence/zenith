@@ -271,7 +271,7 @@ public class LoginActivity extends ActionBarActivity implements LoaderCallbacks<
 
             System.out.println("about to send shit into the database");
             DatabaseConnection connection = new DatabaseConnection();
-            ResultSet loginInfo = connection.sqlQuery("INSERT INTO categories VALUES (0, 'test name', 'test description')");
+            //ResultSet loginInfo = connection.sqlQuery("INSERT INTO categories VALUES (0, 'test name', 'test description')");
             System.out.println("sent shit into database");
 
             try {
