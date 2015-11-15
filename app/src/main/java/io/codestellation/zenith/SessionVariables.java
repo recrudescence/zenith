@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.widget.TextView;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -28,6 +30,8 @@ public class SessionVariables extends Application {
     private  HashMap catExp;
     private  final String logInEmail = "logInEmail";
     private  final String logInState = "logInState";
+    public SQLQueries query = new SQLQueries();
+    DatabaseConnection connection = new DatabaseConnection();
 
 
     public  void initialize(){
@@ -64,23 +68,34 @@ public class SessionVariables extends Application {
     public  HashMap getCatExp(){
         return catExp;
     }
-    public ArrayList<Integer> getTodaysMissions(){
+
+    public ArrayList<Integer> getTodaysMissions() throws SQLException {
         //create new missions everyday
         Calendar todaysDate = Calendar.getInstance();
 
         if (this.getDay().compareTo(todaysDate) < 0 || this.getDay() == null) {
             today = todaysDate;
             ArrayList<Integer> m_ids = new ArrayList<Integer>();
-            for (int i = 0; i < 3; i++) {
+            ResultSet numInProgress = connection.sqlQuery(query.getNumInProgress());
+            int numIP = 0;
+            while(numInProgress.next()){
+                numIP = numInProgress.getInt(1);
+            }
+            for (int i = numIP; i < 3; i++) {
                 Random rand = new Random();
                 int randomNum = rand.nextInt(16);
                 //dont allow duplicate missions in a day
-                if (m_ids.contains(randomNum))
+                ResultSet isInProgress = connection.sqlQuery(query.getAlreadyInProgress(randomNum));
+                int inProgress = 0;
+                while (isInProgress.next()) {
+                    inProgress = isInProgress.getInt(1);
+                }
+                if (inProgress == 1)
                     i--;
                 else
                     m_ids.add(randomNum);
             }
-            return m_ids;
+            return todaysMissions = m_ids;
         }
         else
             return todaysMissions;

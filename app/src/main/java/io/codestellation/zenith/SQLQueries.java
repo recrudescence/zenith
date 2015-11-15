@@ -52,4 +52,10 @@ public class SQLQueries {
     public String addNewMission(int u_id, int m_id) {
         return "INSERT INTO user_missions VALUES (" + u_id + ", " + m_id + ", 'Not Started');";
     }
+    public String getNumInProgress(){
+        return "SELECT COUNT(*) FROM user_missions WHERE status = 'In Progress'";
+    }
+    public String getAlreadyInProgress(int x){
+        return "SELECT CASE WHEN EXISTS (SELECT * FROM user_missions WHERE m_id = " + x + ") THEN 1 ELSE 0 END";
+    }
 }
