@@ -107,6 +107,7 @@ public class LoginActivity extends ActionBarActivity implements LoaderCallbacks<
      */
     private void changePage(){
         Intent intent = new Intent(this, MainPage.class);
+
         startActivity(intent);
     }
 
