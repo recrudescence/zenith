@@ -17,17 +17,14 @@ public class DatabaseConnection extends Application{
     final String DB_URL = String.format("%s:%s://%s:%s/%s",DB_DRIVER, DB_TYPE, DB_HOST, DB_PORT, DB_NAME);
     final String DB_USER = "zenith";
     final String DB_PASSWORD = "codestellation";
-    Connection conn;
 
     public ResultSet sqlQuery(String query) {
         try {
             Class.forName(JDBC_DRIVER);
-            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
-            if (rs != null) {
-                return rs;
-            }
+            return rs;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

@@ -19,10 +19,12 @@ import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static io.codestellation.zenith.R.drawable.*;
 
-public class MainPage extends ActionBarActivity implements View.OnClickListener, MainFragment.OnFragmentInteractionListener,ProfileFragment.OnFragmentInteractionListener,GoalsFragment.OnFragmentInteractionListener,SocialFragment.OnFragmentInteractionListener,HistoryFragment.OnFragmentInteractionListener, SettingsFragment.OnFragmentInteractionListener
+public class MainPage extends ActionBarActivity implements View.OnClickListener,MainFragment.OnFragmentInteractionListener,HomeFragment.OnFragmentInteractionListener,ProfileFragment.OnFragmentInteractionListener,GoalsFragment.OnFragmentInteractionListener,SocialFragment.OnFragmentInteractionListener,HistoryFragment.OnFragmentInteractionListener, SettingsFragment.OnFragmentInteractionListener
 
 {
     private ResideMenu resideMenu;
@@ -33,6 +35,7 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
     private ResideMenuItem itemSocial;
     private ResideMenuItem itemHistory;
     private ResideMenuItem itemSettings;
+    Bundle args = new Bundle();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,13 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
         SessionVariables sv = (SessionVariables) getApplicationContext();
         try {
             sv.initialize();
+            ArrayList<Integer> todaysMissions = sv.getTodaysMissions();
+            HashMap<String, String> mission1 = sv.getMissionDetails(todaysMissions.get(0));
+            HashMap<String,String> mission2 = sv.getMissionDetails(todaysMissions.get(1));
+            HashMap<String,String> mission3 = sv.getMissionDetails(todaysMissions.get(2));
+            args.putSerializable("mission1", mission1);
+            args.putSerializable("mission2", mission2);
+            args.putSerializable("mission3", mission3);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -117,13 +127,17 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
     public void onClick(View view) {   //CLICK THE MENU BUTTONSSSSS
         if(view == itemHome)
         {
-            changeFragment(new MainFragment());
+            MainFragment mf = new MainFragment();
+            mf.setArguments(args);
+            changeFragment(mf);
         }else if (view == itemProfile)
         {
             changeFragment(new ProfileFragment());
         }else if (view == itemGoals)
         {
-            changeFragment(new GoalsFragment());
+            GoalsFragment gf = new GoalsFragment();
+            gf.setArguments(args);
+            changeFragment(gf);
         }else if (view == itemSocial)
         {
             changeFragment(new SocialFragment());

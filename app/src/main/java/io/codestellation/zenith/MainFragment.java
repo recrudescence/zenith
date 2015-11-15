@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.HashMap;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +24,9 @@ public class MainFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    HashMap<String, String> mission1 = (HashMap<String,String>)getArguments().getSerializable("mission1");
+    HashMap<String, String> mission2 = (HashMap<String,String>)getArguments().getSerializable("mission2");
+    HashMap<String, String> mission3 = (HashMap<String,String>)getArguments().getSerializable("mission3");
 
     // TODO: Rename and change types of parameters
     private String mParam1;
