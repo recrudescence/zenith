@@ -88,7 +88,7 @@ public class MainFragment extends Fragment {
 
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/chunkfive.otf");
 
-//        titleSettings.setTypeface(type);
+//        titleSettings.setTypeface(type);  Throws up an error, do not do uncomment this.
         MissionOne.setTypeface(type);
         MissionTwo.setTypeface(type);
         MissionThree.setTypeface(type);
