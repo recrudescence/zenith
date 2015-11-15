@@ -1,12 +1,13 @@
 package io.codestellation.zenith;
 
 import android.app.Application;
+import android.os.AsyncTask;
 
 import java.sql.*;
 /**
  * Created by Michael on 11/14/2015.
  */
-public class DatabaseConnection extends Application{
+public class DatabaseConnection extends AsyncTask<Void, Void, Boolean> {
 
     final String JDBC_DRIVER = "org.postgresql.Driver";
     final String DB_TYPE = "postgresql";
@@ -17,22 +18,33 @@ public class DatabaseConnection extends Application{
     final String DB_URL = String.format("%s:%s://%s:%s/%s",DB_DRIVER, DB_TYPE, DB_HOST, DB_PORT, DB_NAME);
     final String DB_USER = "zenith";
     final String DB_PASSWORD = "codestellation";
-    Connection conn;
+    String query;
+    ResultSet rs;
 
-    public ResultSet sqlQuery(String query) {
+    public void sqlQuery(String query) {
+        this.query = query;
+    }
+
+    public ResultSet queryResult() {
+        return rs;
+    }
+
+    @Override
+    protected Boolean doInBackground(Void... params) {
         try {
             Class.forName(JDBC_DRIVER);
-            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            if (rs != null) {
-                return rs;
-            }
+            rs = st.executeQuery(query);
+            conn.close();
         } catch (ClassNotFoundException e) {
+            System.out.println("class not found");
             e.printStackTrace();
         } catch (SQLException e) {
+            System.out.println("sql exception");
             e.printStackTrace();
         }
-        return null;
+        System.out.println("db access complete");
+        return true;
     }
 }
