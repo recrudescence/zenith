@@ -7,6 +7,10 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 
 /**
@@ -20,12 +24,16 @@ import android.view.ViewGroup;
 public class GoalsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM1 = "param1";  //Title
+    private static final String ARG_PARAM2 = "param2";  //Category
+    private static final String ARG_PARAM3 = "param3";  //Long Desc
+
+    private View rootView;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String mParam3;
 
     private OnFragmentInteractionListener mListener;
 
@@ -38,11 +46,12 @@ public class GoalsFragment extends Fragment {
      * @return A new instance of fragment GoalsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static GoalsFragment newInstance(String param1, String param2) {
+    public static GoalsFragment newInstance(String param1, String param2, String param3) {
         GoalsFragment fragment = new GoalsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM1, param1);     //Title in title
+        args.putString(ARG_PARAM2, param2);     //Category in category
+        args.putString(ARG_PARAM3, param3);     //Long Desc in Description
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,8 +64,9 @@ public class GoalsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam1 = getArguments().getString(ARG_PARAM1); //Initialize values based on bundled arguments.
             mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam3 = getArguments().getString(ARG_PARAM3);
         }
     }
 
@@ -64,11 +74,40 @@ public class GoalsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_goals, container, false);
+        rootView = inflater.inflate(R.layout.fragment_goals, container, false);     //Inflate layout to a view.
+        fillMissionDetails();
+        return rootView;
     }
 
+    public void fillMissionDetails()
+    {
+
+        //Fill the items in the fragment with the variables from the database.
+
+        TextView Title = (TextView) rootView.findViewById(R.id.Title);
+        TextView Category = (TextView) rootView.findViewById(R.id.Category);
+        TextView LongDesc = (TextView) rootView.findViewById(R.id.LongDesc);
+
+        TextView expNum = (TextView) rootView.findViewById(R.id.expAmt);
+        Button start = (Button) rootView.findViewById(R.id.button);
+
+//        Title.setText(mParam1);
+//        Category.setText(mParam2);
+//        LongDesc.setText(mParam3);
+
+        Title.setText("Save the Princess!");
+        Category.setText("Community");
+        LongDesc.setText("Head over to a local charity within the next week, and help out the first person you see!");
+
+        expNum.setText("2");
+        start.setText("Start!");
+
+        return;
+    }
+
+
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed(Uri uri) {      //UI Events - use for start/complete
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
@@ -81,12 +120,12 @@ public class GoalsFragment extends Fragment {
             mListener = (OnFragmentInteractionListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnFragmentInteractionListener"); //Parent activity needs to be class ___ implements GoalsFragment.OnFragmentInteractionListener
         }
     }
 
     @Override
-    public void onDetach() {
+    public void onDetach() {        //Fragment detached from Parent and will prob be replaced by something else.
         super.onDetach();
         mListener = null;
     }
@@ -103,7 +142,7 @@ public class GoalsFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        public void onFragmentInteraction(Uri uri);         //Interface that lets this fragment talk to activity and other frags related to it.
     }
 
 }
