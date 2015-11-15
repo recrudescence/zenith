@@ -75,7 +75,7 @@ public class MissionListFragment extends ListFragment {
                 getActivity(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
-                MissionContent.missionBoard));
+                MissionContent.MISSIONS));
     }
 
     @Override
@@ -115,7 +115,7 @@ public class MissionListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(MissionContent.missionBoard.get(position).id);
+        mCallbacks.onItemSelected(MissionContent.MISSIONS.get(position).id);
     }
 
     @Override
