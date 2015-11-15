@@ -1,12 +1,15 @@
 package io.codestellation.zenith;
 
 import android.app.Activity;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.RadarChart;
@@ -43,7 +46,6 @@ public class ProfileFragment extends Fragment {
     private String mParam2;
 
     private View rootView;
-
     private RadarChart mChart;
     private String[] Skills = new String[] {
             "Community", "Charity", "Environment", "Leadership", "Education"
@@ -91,11 +93,22 @@ public class ProfileFragment extends Fragment {
 
         fillChart();
 
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/chunkfive.ttf");
+
+        TextView Title = (TextView) rootView.findViewById(R.id.Title);
         TextView name = (TextView) rootView.findViewById(R.id.AvatarName);
         TextView level = (TextView) rootView.findViewById(R.id.Level);
+        ImageView Avatar = (ImageView) rootView.findViewById(R.id.AvatarPhoto);
+
+        Title.setText(type);
+        name.setTypeface(type);
+        level.setTypeface(type);
+
+        Drawable avatarPhoto = getResources().getDrawable(R.drawable.sirwilliams);
 
         name.setText("Sir William");
         level.setText("Level "+ String.valueOf(5));
+        Avatar.setImageDrawable(avatarPhoto);
         return rootView;
     }
 

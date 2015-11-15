@@ -1,6 +1,7 @@
 package io.codestellation.zenith;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -83,6 +84,13 @@ public class MainFragment extends Fragment {
         TextView MissionOne = (TextView) rootView.findViewById(R.id.Mission1);
         TextView MissionTwo = (TextView) rootView.findViewById(R.id.Mission2);
         TextView MissionThree = (TextView) rootView.findViewById(R.id.Mission3);
+        TextView Title = (TextView) rootView.findViewById(R.id.Title);
+
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/chunkfive.ttf");
+        Title.setTypeface(type);
+        MissionOne.setTypeface(type);
+        MissionTwo.setTypeface(type);
+        MissionThree.setTypeface(type);
 
         MissionOne.setText(mParam1);
         MissionTwo.setText(mParam2);

@@ -1,6 +1,7 @@
 package io.codestellation.zenith;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -96,12 +97,22 @@ public class GoalsFragment extends Fragment {
 
         //Fill the items in the fragment with the variables from the database.
 
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/chunkfive.ttf");
+
         TextView Title = (TextView) rootView.findViewById(R.id.Title);
         TextView Category = (TextView) rootView.findViewById(R.id.Category);
         TextView LongDesc = (TextView) rootView.findViewById(R.id.LongDesc);
 
+        TextView XP = (TextView) rootView.findViewById(R.id.Exp);
         TextView expNum = (TextView) rootView.findViewById(R.id.expAmt);
         Button start = (Button) rootView.findViewById(R.id.button);
+
+        Title.setTypeface(type);
+        Category.setTypeface(type);
+        LongDesc.setTypeface(type);
+        XP.setTypeface(type);
+        expNum.setTypeface(type);
+        start.setTypeface(type);
 
 //        Title.setText(mParam1);
 //        Category.setText(mParam2);

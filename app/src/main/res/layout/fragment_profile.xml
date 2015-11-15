@@ -36,7 +36,8 @@
                 android:text="Profile"
                 android:textSize="24sp"
                 android:textColor="#999999"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:id="@+id/Title" />
 
             <Button
                 android:layout_width="28dp"
@@ -62,17 +63,17 @@
         android:alpha=".60"
         android:background="@android:color/white">
 
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:id="@+id/AvatarPhoto"
+            android:layout_gravity="right|center_vertical" />
+
         <com.github.mikephil.charting.charts.RadarChart
             android:id="@+id/SpideySenses"
             android:layout_width="230dp"
             android:layout_height="230dp"
             android:layout_gravity="left|bottom" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/AvatarPhoto"
-            android:layout_gravity="right|center_vertical" />
 
         <LinearLayout
             android:orientation="vertical"
