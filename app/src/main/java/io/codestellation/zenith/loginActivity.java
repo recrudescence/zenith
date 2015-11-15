@@ -34,7 +34,7 @@ import java.util.List;
 /**
  * A login screen that offers login via email/password.
  */
-public class loginActivity extends ActionBarActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends ActionBarActivity implements LoaderCallbacks<Cursor> {
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -100,7 +100,7 @@ public class loginActivity extends ActionBarActivity implements LoaderCallbacks<
      * errors are presented and no actual login attempt is made.
      */
     private void changePage(){
-        Intent intent = new Intent(this, mainPage.class);
+        Intent intent = new Intent(this, MainPage.class);
         startActivity(intent);
     }
 
@@ -245,7 +245,7 @@ public class loginActivity extends ActionBarActivity implements LoaderCallbacks<
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(loginActivity.this,
+                new ArrayAdapter<>(LoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);

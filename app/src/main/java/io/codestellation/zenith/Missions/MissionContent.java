@@ -10,24 +10,26 @@ import java.util.Map;
  */
 public class MissionContent {
 
-    public static String infoDatabase = "Placeholder";
+   // public static String infoDatabase = "Placeholder";
 
-    public static List<String> missionTitles = new ArrayList<>();
+//    public static List<String> missionTitles = new ArrayList<>();
 
-    public static List<MissionItem> missionBoard = new ArrayList<>();
+    public static List<MissionItem> MISSIONS = new ArrayList<>();
 
-    public static Map<String, MissionItem> missionBoardMap = new HashMap<>();
+    public static Map<String, MissionItem> MISSIONS_MAP = new HashMap<>();
 
 
     private static final int COUNT = 25;
 
     static{
+        //Add sample items.
         for (int i = 1; i <= COUNT; i++)
         {
             addItem(createMissionItem(i));
         }
     }
 
+    //Dummy item class
     public static class MissionItem
     {
         public String id;
@@ -43,13 +45,13 @@ public class MissionContent {
     }
     private static void addItem(MissionItem Mission)
     {
-        missionBoard.add(Mission);
-        missionBoardMap.put(Mission.id, Mission);
+        MISSIONS.add(Mission);
+        MISSIONS_MAP.put(Mission.id, Mission);
     }
 
     private static MissionItem createMissionItem(int position)
     {
-        return new MissionItem(String.valueOf(position), missionTitles.get(position), makeDetails(position));
+        return new MissionItem(String.valueOf(position), "Item #" + position, makeDetails(position));
     }
     private static String makeDetails(int position)
     {
@@ -62,12 +64,15 @@ public class MissionContent {
         return builder.toString();
     }
 
-    private static void makeTitle()
-    {
-        for (int i = 0; i < COUNT; i++);
-        missionTitles.add("Make Way for Ducklings");
-        return;
-    }
+//    private static void makeTitle()
+//    {
+//        for (int i = 0; i < COUNT; i++)
+//        {
+//            missionTitles.add("Make Way for Ducklings");
+//        }
+//
+//        return;
+//    }
 
 }
 

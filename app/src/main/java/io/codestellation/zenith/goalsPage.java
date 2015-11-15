@@ -3,7 +3,9 @@ package io.codestellation.zenith;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
-public class goalsPage extends ActionBarActivity {
+import io.codestellation.zenith.R;
+
+public class GoalsPage extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
