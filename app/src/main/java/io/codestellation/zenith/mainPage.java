@@ -1,6 +1,7 @@
 package io.codestellation.zenith;
 
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -30,6 +31,7 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
     private ResideMenuItem itemHistory;
     private ResideMenuItem itemSettings;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,10 +53,10 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
         resideMenu.setMenuListener(menuListener); // Prints Open/Close - not needed
 
         //Scale factor has to be between 0.0f and 1.0f
-        resideMenu.setScaleValue(0.75f);
+        resideMenu.setScaleValue(0.65f);
 
         //Create Menu Items
-        String titles[] = { "Home", "Profile", "Today's Goals", "Social", "History", "Settings" };
+        String titles[] = { "Home", "Profile", "Today's Goals", "Social", "History", "Options" };
         int icon[] = {R.drawable.icon_home, R.drawable.icon_profile, R.drawable.icon_goals, R.drawable.icon_social, R.drawable.icon_history, R.drawable.icon_settings};
 
         itemHome = new ResideMenuItem(this, icon[0], titles[0]);

@@ -27,10 +27,6 @@
             android:label="@string/title_activity_main_page" >
         </activity>
         <activity
-            android:name=".GoalsPage"
-            android:label="@string/title_activity_goals_page" >
-        </activity>
-        <activity
             android:name=".MissionListActivity"
             android:label="MissionsList" >
         </activity>
