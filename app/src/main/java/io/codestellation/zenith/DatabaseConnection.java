@@ -12,8 +12,9 @@ public class DatabaseConnection extends Application{
     final String DB_TYPE = "postgresql";
     final String DB_DRIVER = "jdbc";
     final String DB_NAME = "zenith_psql";
-    final String DB_HOST = "zenith-psql.cqvpy1ldbcd1.us-east-1.rds.amazonaws.com:5432";
-    final String DB_URL = String.format("%s:%s://%s/%s",DB_DRIVER, DB_TYPE, DB_HOST, DB_NAME);
+    final String DB_HOST = "zenith-psql.cqvpy1ldbcd1.us-east-1.rds.amazonaws.com";
+    final String DB_PORT = "5432";
+    final String DB_URL = String.format("%s:%s://%s:%s/%s",DB_DRIVER, DB_TYPE, DB_HOST, DB_PORT, DB_NAME);
     final String DB_USER = "zenith";
     final String DB_PASSWORD = "codestellation";
     Connection conn;
@@ -24,7 +25,9 @@ public class DatabaseConnection extends Application{
             conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
-            return rs;
+            if (rs != null) {
+                return rs;
+            }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
