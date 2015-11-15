@@ -22,7 +22,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 }
-repositories { mavenCentral() }
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
@@ -30,4 +33,5 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:4.6.0'
     compile 'com.specyci:residemenu:1.6+'
     compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
 }

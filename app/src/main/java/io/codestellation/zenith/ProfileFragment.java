@@ -8,6 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.mikephil.charting.charts.RadarChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.Legend.LegendPosition;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.RadarData;
+import com.github.mikephil.charting.data.RadarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +38,13 @@ public class ProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private View rootView;
+
+    private RadarChart mChart;
+    private String[] Skills = new String[] {
+            "Community", "Charity", "Environment", "Leadership", "Education"
+    };
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +83,80 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        mChart = (RadarChart) rootView.findViewById(R.id.SpideySenses);
+
+        fillChart();
+
+        return rootView;
+    }
+
+    public void fillChart()
+    {
+        mChart.setWebLineWidth(1.5f);
+        mChart.setWebLineWidthInner(0.75f);
+        mChart.setWebAlpha(100);
+
+//        MyMarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view);
+//
+//        // set the marker to the chart
+//        mChart.setMarkerView(mv);
+
+        setData();
+
+        XAxis xAxis = mChart.getXAxis();
+//        xAxis.setTypeface(tf);
+        xAxis.setTextSize(9f);
+
+        YAxis yAxis = mChart.getYAxis();
+//        yAxis.setTypeface(tf);
+        yAxis.setLabelCount(5, false);
+        yAxis.setTextSize(9f);
+        yAxis.setStartAtZero(true);
+
+//        Legend l = mChart.getLegend();
+//        l.setPosition(LegendPosition.RIGHT_OF_CHART);
+////        l.setTypeface(tf);
+//        l.setXEntrySpace(7f);
+//        l.setYEntrySpace(5f);
+    }
+
+    public void setData() {
+
+        float mult = 150;
+        int cnt = 5;
+
+        ArrayList<Entry> yVals1 = new ArrayList<Entry>();
+
+        // IMPORTANT: In a PieChart, no values (Entry) should have the same
+        // xIndex (even if from different DataSets), since no values can be
+        // drawn above each other.
+        for (int i = 0; i < cnt; i++) {
+            yVals1.add(new Entry((float) (Math.random() * mult) + mult / 2, i));
+        }
+
+        ArrayList<String> xVals = new ArrayList<String>();
+
+        for (int i = 0; i < cnt; i++)
+            xVals.add(Skills[i % Skills.length]);
+
+        RadarDataSet set1 = new RadarDataSet(yVals1, "Set 1");
+        set1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
+        set1.setDrawFilled(true);
+        set1.setLineWidth(2f);
+
+
+        ArrayList<RadarDataSet> sets = new ArrayList<RadarDataSet>();
+        sets.add(set1);
+
+        RadarData data = new RadarData(xVals, sets);
+//        data.setValueTypeface(tf);
+        data.setValueTextSize(8f);
+        data.setDrawValues(false);
+
+        mChart.setData(data);
+
+        mChart.invalidate();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
