@@ -41,8 +41,10 @@ public class GoalsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private String mParam3;
+    private String mParam4;
 
     private OnFragmentInteractionListener mListener;
+
 
     /**
      * Use this factory method to create a new instance of
@@ -69,11 +71,14 @@ public class GoalsFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Bundle args = getArguments();
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1); //Initialize values based on bundled arguments.
-            mParam2 = getArguments().getString(ARG_PARAM2);
-            mParam3 = getArguments().getString(ARG_PARAM3);
+        if (args != null) {
+            HashMap<String,String> m1 = (HashMap<String,String>) args.getSerializable("m1");
+            mParam1 = m1.get("missionName");//Initialize values based on bundled arguments.
+            mParam2 = m1.get("category");
+            mParam3 = m1.get("longDesc");
+            mParam4 = m1.get("exp");
         }
     }
 
@@ -102,11 +107,11 @@ public class GoalsFragment extends Fragment {
 //        Category.setText(mParam2);
 //        LongDesc.setText(mParam3);
 
-        Title.setText("Save the Princess!");
-        Category.setText("Community");
-        LongDesc.setText("Head over to a local charity within the next week, and help out the first person you see!");
+        Title.setText(mParam1);
+        Category.setText(mParam2);
+        LongDesc.setText(mParam3);
 
-        expNum.setText("2");
+        expNum.setText(mParam4);
         start.setText("Start!");
 
         return;

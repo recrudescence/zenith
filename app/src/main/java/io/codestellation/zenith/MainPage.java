@@ -19,6 +19,8 @@ import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static io.codestellation.zenith.R.drawable.*;
 
@@ -33,6 +35,7 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
     private ResideMenuItem itemSocial;
     private ResideMenuItem itemHistory;
     private ResideMenuItem itemSettings;
+    Bundle args = new Bundle();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,21 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
         SessionVariables sv = (SessionVariables) getApplicationContext();
         try {
             sv.initialize();
+            Thread.sleep(2000);
+            ArrayList<Integer>  todayMission = new ArrayList<Integer>();
+            todayMission=sv.getTodaysMissions();
+            System.out.println("TODAYS MISSIONS......................................... " + sv.getMissionDetails(todayMission.get(0)));
+            HashMap<String,String> mission1 = sv.getMissionDetails(todayMission.get(0));
+            HashMap<String,String> mission2 = sv.getMissionDetails(todayMission.get(1));
+            HashMap<String,String> mission3 = sv.getMissionDetails(todayMission.get(2));
+
+
+            args.putSerializable("m1", mission1);
+            args.putSerializable("m2", mission2);
+            args.putSerializable("m3",mission3);
+
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -119,13 +137,17 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
     public void onClick(View view) {   //CLICK THE MENU BUTTONSSSSS
         if(view == itemHome)
         {
-            changeFragment(new MainFragment());
+            MainFragment mf = new MainFragment();
+            mf.setArguments(args);
+            changeFragment(mf);
         }else if (view == itemProfile)
         {
             changeFragment(new ProfileFragment());
         }else if (view == itemGoals)
         {
-            changeFragment(new GoalsFragment());
+            GoalsFragment gf = new GoalsFragment();
+            gf.setArguments(args);
+            changeFragment(gf);
         }else if (view == itemSocial)
         {
             changeFragment(new SocialFragment());
