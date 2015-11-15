@@ -67,8 +67,12 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
         }
         setupMenu();
 
-        if (savedInstanceState == null)
-            changeFragment(new MainFragment());
+        if (savedInstanceState == null){
+            MainFragment mf = new MainFragment();
+            mf.setArguments(args);
+            changeFragment(mf);
+        }
+
     }
 
     private void setupMenu(){

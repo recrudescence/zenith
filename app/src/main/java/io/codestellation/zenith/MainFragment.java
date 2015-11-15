@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.HashMap;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,11 +62,16 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Bundle args = getArguments();
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-            mParam3 = getArguments().getString(ARG_PARAM3);
+        if (args != null) {
+            HashMap<String,String> m1 = (HashMap<String,String>) args.getSerializable("m1");
+            HashMap<String,String> m2 = (HashMap<String,String>) args.getSerializable("m2");
+            HashMap<String,String> m3 = (HashMap<String,String>) args.getSerializable("m3");
+
+            mParam1 = m1.get("missionName");
+            mParam2 = m2.get("missionName");
+            mParam3 = m3.get("missionName");
         }
     }
 
@@ -97,9 +104,9 @@ public class MainFragment extends Fragment {
 //        MissionTwo.setText(mParam2);
 //        MissionThree.setText(mParam3);
 
-        MissionOne.setText("No Tricks, All Treats!");
-        MissionTwo.setText("Save the Princess!");
-        MissionThree.setText("Something else adventurous!");
+        MissionOne.setText(mParam1 + "\n\n");
+        MissionTwo.setText(mParam2 + "\n\n");
+        MissionThree.setText(mParam3 + "\n\n");
 
         return;
 

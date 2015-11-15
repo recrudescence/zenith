@@ -41,6 +41,7 @@ public class GoalsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String mParam3_1;
     private String mParam3;
     private String mParam4;
 
@@ -79,6 +80,7 @@ public class GoalsFragment extends Fragment {
             mParam1 = m1.get("missionName");//Initialize values based on bundled arguments.
             mParam2 = m1.get("category");
             mParam3 = m1.get("longDesc");
+            mParam3_1 = m1.get("shortDesc");
             mParam4 = m1.get("exp");
         }
     }
@@ -122,7 +124,7 @@ public class GoalsFragment extends Fragment {
 
         Title.setText(mParam1);
         Category.setText(mParam2);
-        LongDesc.setText(mParam3);
+        LongDesc.setText(mParam3_1 + "\n\n\n" + mParam3);
 
         expNum.setText(mParam4);
         start.setText("Start!");
