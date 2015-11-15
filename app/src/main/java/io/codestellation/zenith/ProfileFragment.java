@@ -93,14 +93,14 @@ public class ProfileFragment extends Fragment {
 
         fillChart();
 
-        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/chunkfive.ttf");
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/chunkfive.otf");
 
         TextView Title = (TextView) rootView.findViewById(R.id.Title);
         TextView name = (TextView) rootView.findViewById(R.id.AvatarName);
         TextView level = (TextView) rootView.findViewById(R.id.Level);
         ImageView Avatar = (ImageView) rootView.findViewById(R.id.AvatarPhoto);
 
-        Title.setText(type);
+        Title.setTypeface(type);
         name.setTypeface(type);
         level.setTypeface(type);
 

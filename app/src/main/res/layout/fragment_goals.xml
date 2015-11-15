@@ -36,7 +36,8 @@
                 android:text="Mission"
                 android:textSize="24sp"
                 android:textColor="#999999"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:id="@+id/Label" />
 
             <Button
                 android:layout_width="28dp"

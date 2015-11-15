@@ -97,8 +97,9 @@ public class GoalsFragment extends Fragment {
 
         //Fill the items in the fragment with the variables from the database.
 
-        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/chunkfive.ttf");
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/chunkfive.otf");
 
+        TextView MissionsLabel = (TextView) rootView.findViewById(R.id.Label);
         TextView Title = (TextView) rootView.findViewById(R.id.Title);
         TextView Category = (TextView) rootView.findViewById(R.id.Category);
         TextView LongDesc = (TextView) rootView.findViewById(R.id.LongDesc);
@@ -107,6 +108,7 @@ public class GoalsFragment extends Fragment {
         TextView expNum = (TextView) rootView.findViewById(R.id.expAmt);
         Button start = (Button) rootView.findViewById(R.id.button);
 
+        MissionsLabel.setTypeface(type);
         Title.setTypeface(type);
         Category.setTypeface(type);
         LongDesc.setTypeface(type);

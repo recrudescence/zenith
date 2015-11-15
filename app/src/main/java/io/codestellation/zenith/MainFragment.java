@@ -84,17 +84,18 @@ public class MainFragment extends Fragment {
         TextView MissionOne = (TextView) rootView.findViewById(R.id.Mission1);
         TextView MissionTwo = (TextView) rootView.findViewById(R.id.Mission2);
         TextView MissionThree = (TextView) rootView.findViewById(R.id.Mission3);
-        TextView Title = (TextView) rootView.findViewById(R.id.Title);
+        TextView titleSettings = (TextView) rootView.findViewById(R.id.Title);
 
-        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/chunkfive.ttf");
-        Title.setTypeface(type);
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/chunkfive.otf");
+
+//        titleSettings.setTypeface(type);
         MissionOne.setTypeface(type);
         MissionTwo.setTypeface(type);
         MissionThree.setTypeface(type);
 
-        MissionOne.setText(mParam1);
-        MissionTwo.setText(mParam2);
-        MissionThree.setText(mParam3);
+//        MissionOne.setText(mParam1);
+//        MissionTwo.setText(mParam2);
+//        MissionThree.setText(mParam3);
 
         MissionOne.setText("No Tricks, All Treats!");
         MissionTwo.setText("Save the Princess!");
