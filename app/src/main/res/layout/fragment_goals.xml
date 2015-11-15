@@ -59,7 +59,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/main_fragment"
-        android:alpha=".25"
+        android:alpha=".45"
         android:background="@android:color/white">
 
         <LinearLayout
