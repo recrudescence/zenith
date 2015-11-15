@@ -34,13 +34,13 @@ public class SessionVariables extends Application {
     DatabaseConnection connection = new DatabaseConnection();
 
 
-    public  void initialize(){
+    public  void initialize() throws SQLException {
         preferences = getSharedPreferences(this.getApplicationContext());
         editor.putString(logInEmail, null);
         editor.putBoolean(logInState, false);
         editor.commit();
         today = Calendar.getInstance();
-        todaysMissions = new ArrayList<Integer>();
+        todaysMissions = getTodaysMissions();
         goalHistory = new ArrayList<String>();
         menuOptions = new ArrayList<String>(Arrays.asList("Today's Goals", "social", "History", "Settings"));
         catExp  = new HashMap<String, Integer>();
@@ -72,7 +72,7 @@ public class SessionVariables extends Application {
     public ArrayList<Integer> getTodaysMissions() throws SQLException {
         //create new missions everyday
         Calendar todaysDate = Calendar.getInstance();
-
+        connection.sqlQuery(query.clearStaleMissions());
         if (this.getDay().compareTo(todaysDate) < 0 || this.getDay() == null) {
             today = todaysDate;
             ArrayList<Integer> m_ids = new ArrayList<Integer>();
@@ -90,15 +90,44 @@ public class SessionVariables extends Application {
                 while (isInProgress.next()) {
                     inProgress = isInProgress.getInt(1);
                 }
+                //if mission already is a today's mission, get another one
                 if (inProgress == 1)
                     i--;
-                else
+                else {
                     m_ids.add(randomNum);
+                    ResultSet toAdd = connection.sqlQuery(query.addNewMission(randomNum));
+                }
             }
             return todaysMissions = m_ids;
         }
         else
             return todaysMissions;
+    }
+    public HashMap<String, String> getMissionDetails(int i) throws SQLException {
+        HashMap<String, String> missionDetails = new HashMap<String, String>();
+        DatabaseConnection connection = new DatabaseConnection();
+        //call query to get the information for mission with m_id = 1
+        ResultSet rs = connection.sqlQuery(query.missionDetailsQuery(i));
+        while(rs.next()){
+            //parse result and store all the fields
+            String missionName = rs.getString(2).trim();
+            missionDetails.put("missionName", missionName);
+            String shortDesc = rs.getString(3).trim();
+            missionDetails.put("shortDesc", shortDesc);
+            String longDesc = rs.getString(4).trim();
+            missionDetails.put("longDesc", longDesc);
+            String exp = Integer.toString(rs.getInt(5));
+            missionDetails.put("exp", exp);
+            ResultSet rsJoin = connection.sqlQuery(query.getCategoryName(i));
+            //run query to join m_c_id with categories to get category name
+            while(rsJoin.next()) {
+                String category = rs.getString(1).trim();
+                missionDetails.put("category", category);
+            }
+
+        }
+
+        return missionDetails;
     }
 
 }

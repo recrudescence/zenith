@@ -10,32 +10,7 @@ import java.util.HashMap;
 public class SQLQueries {
 
     //returns details of mission by {missionName, shortDesc, longDesc, exp, and category}
-    public HashMap<String, String> getMissionDetails(int i) throws SQLException {
-        HashMap<String, String> missionDetails = new HashMap<String, String>();
-        DatabaseConnection connection = new DatabaseConnection();
-        //call query to get the information for mission with m_id = 1
-        ResultSet rs = connection.sqlQuery(missionDetailsQuery(i));
-        while(rs.next()){
-            //parse result and store all the fields
-            String missionName = rs.getString(2).trim();
-            missionDetails.put("missionName", missionName);
-            String shortDesc = rs.getString(3).trim();
-            missionDetails.put("shortDesc", shortDesc);
-            String longDesc = rs.getString(4).trim();
-            missionDetails.put("longDesc", longDesc);
-            String exp = Integer.toString(rs.getInt(5));
-            missionDetails.put("exp", exp);
-            ResultSet rsJoin = connection.sqlQuery(getCategoryName(i));
-            //run query to join m_c_id with categories to get category name
-            while(rsJoin.next()) {
-                String category = rs.getString(1).trim();
-                missionDetails.put("category", category);
-            }
 
-        }
-
-        return missionDetails;
-    }
 
     public String missionDetailsQuery(int i ){
         return "SELECT * FROM all_missions WHERE m_id = " + i + ";";
@@ -45,12 +20,12 @@ public class SQLQueries {
         return "SELECT c_name FROM categories JOIN all_missions ON categories.c_id = all_missions.m_c_id WHERE c_id = " + i  +";" ;
     }
 
-    public String clearStaleMissions(int u_id) {
-        return "DELETE FROM user_missions WHERE um_u_id = " + u_id + " AND um_status = 'Not Started';";
+    public String clearStaleMissions() {
+        return "DELETE FROM user_missions WHERE um_status = 'Not Started';";
     }
 
-    public String addNewMission(int u_id, int m_id) {
-        return "INSERT INTO user_missions VALUES (" + u_id + ", " + m_id + ", 'Not Started');";
+    public String addNewMission(int m_id) {
+        return "INSERT INTO user_missions VALUES (" + 0 + ", " + m_id + ", 'Not Started');";
     }
     public String getNumInProgress(){
         return "SELECT COUNT(*) FROM user_missions WHERE status = 'In Progress'";

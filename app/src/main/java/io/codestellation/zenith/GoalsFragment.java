@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.service.textservice.SpellCheckerService;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import java.util.HashMap;
 
 
 /**
@@ -29,6 +32,7 @@ public class GoalsFragment extends Fragment {
     private static final String ARG_PARAM3 = "param3";  //Long Desc
 
     private View rootView;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
