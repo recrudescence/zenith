@@ -10,7 +10,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Goals"
         android:typeface="monospace"
-        android: textColor="#000000"
+        android:textColor="#000000"
         android:id="@+id/goalspagefont"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
