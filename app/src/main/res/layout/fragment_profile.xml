@@ -60,7 +60,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/main_fragment"
-        android:alpha=".60"
+        android:alpha=".75"
         android:background="@android:color/white">
 
         <ImageView
