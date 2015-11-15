@@ -19,7 +19,7 @@ import com.special.ResideMenu.ResideMenuItem;
 
 import static io.codestellation.zenith.R.drawable.*;
 
-public class MainPage extends ActionBarActivity implements View.OnClickListener, MainFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener,ProfileFragment.OnFragmentInteractionListener,GoalsFragment.OnFragmentInteractionListener,SocialFragment.OnFragmentInteractionListener,HistoryFragment.OnFragmentInteractionListener, SettingsFragment.OnFragmentInteractionListener
+public class MainPage extends ActionBarActivity implements View.OnClickListener, MainFragment.OnFragmentInteractionListener,ProfileFragment.OnFragmentInteractionListener,GoalsFragment.OnFragmentInteractionListener,SocialFragment.OnFragmentInteractionListener,HistoryFragment.OnFragmentInteractionListener, SettingsFragment.OnFragmentInteractionListener
 
 {
     private ResideMenu resideMenu;
