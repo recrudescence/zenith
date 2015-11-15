@@ -1,6 +1,7 @@
 package io.codestellation.zenith;
 
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -36,6 +37,7 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
         setContentView(R.layout.activity_main_page);
         mContext = this;
         setupMenu();
+
         if (savedInstanceState == null)
             changeFragment(new MainFragment());
     }
@@ -44,8 +46,7 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
 
         // Menu Drawer
         resideMenu = new ResideMenu(this);
-//        resideMenu.setBackground(tempmainpagebackground);
-        resideMenu.setBackgroundColor(0xFFA1D490);
+        resideMenu.setBackground(zenithmainbg);
         resideMenu.attachToActivity(this);
 
         resideMenu.setMenuListener(menuListener); // Prints Open/Close - not needed
@@ -54,7 +55,7 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
         resideMenu.setScaleValue(0.75f);
 
         //Create Menu Items
-        String titles[] = { "Home", "Profile", "Today's Goals", "Social", "History", "Settings" };
+        String titles[] = { "Home", "Profile", "Missions", "Social", "History", "Settings" };
         int icon[] = {R.drawable.icon_home, R.drawable.icon_profile, R.drawable.icon_goals, R.drawable.icon_social, R.drawable.icon_history, R.drawable.icon_settings};
 
         itemHome = new ResideMenuItem(this, icon[0], titles[0]);
@@ -107,7 +108,7 @@ public class MainPage extends ActionBarActivity implements View.OnClickListener,
     public void onClick(View view) {   //CLICK THE MENU BUTTONSSSSS
         if(view == itemHome)
         {
-            changeFragment(new HomeFragment());
+            changeFragment(new MainFragment());
         }else if (view == itemProfile)
         {
             changeFragment(new ProfileFragment());
