@@ -61,6 +61,12 @@
         android:id="@+id/main_fragment"
         android:alpha=".45"
         android:background="@android:color/white">
+
+        <com.github.mikephil.charting.charts.RadarChart
+            android:id="@+id/SpideySenses"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
     </FrameLayout>
 
 </LinearLayout>
